@@ -25,7 +25,7 @@ it makes the system safer, cleaner, and more reliable.
 Abstraction means hiding the complex implementation details and showing
 only the essential features that matter to the user.<br>
 The benefit of abstraction is that it makes code easier to use and
-understand. People don't need to know all the internal details --- they
+understand. People don't need to know all the internal details, they
 just work with a clean interface. It also reduces complexity, makes the
 system more flexible, and allows me to change the implementation later
 without affecting the outside code.
@@ -38,7 +38,7 @@ Inheritance means creating new classes based on existing ones. The child
 class automatically gets the fields and methods of the parent class, and
 I can add or override features as needed.<br>
 The benefit of inheritance is that it promotes code reuse. I don't have
-to rewrite common functionality --- I can just inherit it. It also makes
+to rewrite common functionality, I can just inherit it. It also makes
 code easier to organize, since related classes share a base. And it
 helps with maintainability, because changes in the parent can flow down
 to the children.
@@ -58,7 +58,7 @@ duplication, and keeps the code cleaner.
 There are two types of polymorphism:
 
 -   Compile time: Method overloading<br>
--   Run time: Method overriding
+-   Run time: Method overriding<br>
 
 Virtual methods are resolved during runtime. Every object has a hidden
 reference to its type's method table. When a virtual method is called
@@ -67,7 +67,7 @@ and invokes the correct overridden method.
 
 ------------------------------------------------------------------------
 
-## Example -- OOP
+## OOP
 
 ``` csharp
 // Abstraction: common contract for all teams
@@ -124,7 +124,7 @@ public class InternationalTeam : TeamBase
 ## When to use composition over inheritance?
 
 I prefer composition when the relationship is 'has‑a' rather than
-'is‑a.' For example, a car has an engine, tyres, and seats --- it
+'is‑a.' For example, a car has an engine, tyres, and seats, it
 doesn't make sense to say a car is an engine.<br>
 Composition also helps when I want to use multiple objects together,
 since multiple inheritance isn't allowed. It gives me flexibility and
@@ -271,32 +271,32 @@ If the parent is destroyed, the child is also destroyed.
 
 ## Mastery of the SOLID principles
 
-### S --- Single Responsibility Principle
+### S : Single Responsibility Principle
 
 A class should have only one reason to change, meaning it should handle
 only one responsibility.<br>
 This improves maintainability, testability, and separation of concerns.
 
-### O --- Open/Closed Principle
+### O : Open/Closed Principle
 
 Software entities should be open for extension but closed for
 modification.<br>
 New behavior should be added using abstractions and polymorphism without
 changing existing tested code.
 
-### L --- Liskov Substitution Principle
+### L : Liskov Substitution Principle
 
 Derived classes must be substitutable for their base classes without
 altering the correctness of the program.<br>
 They must honor the base class contract and not change expected
 behavior.
 
-### I --- Interface Segregation Principle
+### I : Interface Segregation Principle
 
 Clients should not be forced to depend on methods they do not use.<br>
 Prefer small, specific interfaces over large, general-purpose ones.
 
-### D --- Dependency Inversion Principle
+### D : Dependency Inversion Principle
 
 High-level modules should not depend on low-level modules.<br>
 Both should depend on abstractions.<br>
