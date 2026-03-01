@@ -185,15 +185,17 @@ while an interface is a contract and supports multiple inheritance.
 
 ------------------------------------------------------------------------
 
-## Distinction between Class and Object
+## Distinction between Class, Object, Struct, Enum and Record
 
+Class<br>
 A class is a blueprint or template that defines: - properties (data)<br>
 - methods (behavior)
 
 It does not hold actual data until an object is created.
 
+Object<br>
 An object is a real instance of a class.<br>
-It: - holds actual data in memory<br>
+- holds actual data in memory<br>
 - can call the class methods<br>
 - represents a real entity
 
@@ -202,6 +204,89 @@ In ASP.NET Core, a Controller is a class, and when a request comes in,
 the framework creates an object of that controller to handle the
 request.
 
+Struct<br>
+A struct is a value type stored on the stack and copied by value.
+Example: DateTime, Point, Money
+```csharp
+public struct Money
+{
+    public decimal Amount { get; }
+    public string Currency { get; }
+
+    public Money(decimal amount, string currency)
+    {
+        Amount = amount;
+        Currency = currency;
+    }
+}
+```
+Record(C# 9+)<br>
+Record is a reference type with value-based equality and built-in immutability support.
+Used for:
+- DTOs
+- API models
+- Immutable data
+- Comparing by value instead of reference
+```csharp
+public record Person(string Name, int Age);
+
+var p1 = new Person("Nitin", 25);
+var p2 = new Person("Nitin", 25);
+
+Console.WriteLine(p1 == p2); // true ✅ value equality
+```
+Record struct<br>
+It is just record + struct and instead of reference type it is value type.<br>
+With the help of read only we can make it immutable.<br>
+
+Enum<br>
+Enum is a named constant set of numeric values.
+```csharp
+enum OrderStatus
+{
+    Pending,
+    Shipped,
+    Delivered
+}
+
+enum Status : byte
+{
+    Active = 1,
+    Inactive = 2
+}
+```
+------------------------------------------------------------------------
+## set, init, with
+- set : can change anytime
+- init : can only set during object creation
+- with : creates a copy of a record with modified values
+
+```csharp
+public class User
+{
+    public string Name { get; set; }
+}
+
+var u = new User();
+u.Name = "Nitin"; // allowed
+u.Name = "Rahul"; // allowed ❌ mutable
+```
+```csharp
+public class User
+{
+    public string Name { get; init; }
+}
+
+var u = new User { Name = "Nitin" }; // allowed
+u.Name = "Rahul"; // ❌ compile-time error
+```
+```csharp
+public record Person(string Name, int Age);
+
+var p1 = new Person("Nitin", 25);
+
+var p2 = p1 with { Age = 26 };
+```
 ------------------------------------------------------------------------
 
 ## Constructors (Default, Parameterized, and Static implementations)
