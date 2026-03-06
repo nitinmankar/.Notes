@@ -181,7 +181,9 @@ In abstract class I can make that new method without abstract keywords
 which will prevent breaking anything.
 
 An abstract class can have state, constructors, and implemented methods,
-while an interface is a contract and supports multiple inheritance.
+while an interface is a contract and supports multiple inheritance.  
+
+Interfaces can now have behavior (methods), they still cannot hold instance state (fields). Abstract classes remain the only choice when you need to share non-static data fields across a hierarchy.
 
 ------------------------------------------------------------------------
 
@@ -205,7 +207,7 @@ the framework creates an object of that controller to handle the
 request.
 
 Struct<br>
-A struct is a value type stored on the stack and copied by value.
+Structs are value types. Their memory is allocated wherever they are declared (stack for local variables, heap for class fields).  
 Example: DateTime, Point, Money
 ```csharp
 public struct Money
@@ -313,7 +315,7 @@ initialize its state.
 -   Override: Used in the child class to provide a new implementation of
     a virtual method.<br>
 -   New: Used when we hide a base class method instead of overriding
-    it.<br>
+    it.(Shadowing)<br>
     Because new → compile-time binding, not runtime polymorphism.<br>
 -   Sealed: Used to stop further overriding of an overridden method.<br>
     We can use sealed only with override, not directly on a base virtual
@@ -350,7 +352,7 @@ controlled by the parent.
 
 Composition is a strong has-a relationship where the parent creates and
 owns the child object, and the child's lifecycle depends on the parent.
-If the parent is destroyed, the child is also destroyed.
+If the parent is destroyed, the child is also destroyed. The child object usually cannot exist without the parent (e.g., a Room in a House).
 
 ------------------------------------------------------------------------
 
@@ -374,7 +376,8 @@ changing existing tested code.
 Derived classes must be substitutable for their base classes without
 altering the correctness of the program.<br>
 They must honor the base class contract and not change expected
-behavior.
+behavior.  
+A common violation of LSP is when a derived class throws a NotImplementedException for a method inherited from a base class.  
 
 ### I : Interface Segregation Principle
 
@@ -395,8 +398,7 @@ frameworks like ASP.NET Core.
 DIP lets us depend on interfaces, so we can inject mocks instead of real
 repositories, removing database dependency and enabling fast unit
 tests.<br>
-It causes tight coupling, prevents mocking, violates OCP, and locks the
-service to a specific database implementation.
+It helps in loose coupling, mocking.
 
 DIP is a design principle; DI container is a tool that implements it.
 DIP can be achieved manually using constructor injection.
