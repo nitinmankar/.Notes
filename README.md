@@ -599,8 +599,7 @@ foreach relies on an enumerator that tracks the collection’s state. If the col
 
 ## Understanding Variance (in, out keywords).
 
-- ref
-Passes a variable by reference. The method can read and modify the caller’s variable.<br>
+- ref: ref passes a variable by reference. The method can read and modify the caller’s variable.<br>
 The variable must be initialized before being passed.
 ```csharp
 void Increment(ref int x)
@@ -612,8 +611,7 @@ int num = 5;
 Increment(ref num);
 Console.WriteLine(num); // 6
 ```
-- out
-Also passes a variable by reference, but specifically for output.<br>
+- out: out also passes a variable by reference, but specifically for output.<br>
 The method must assign a value before returning.<br>
 The variable does not need to be initialized before being passed.
 ```csharp
@@ -627,8 +625,7 @@ int x, y;
 GetValues(out x, out y);
 Console.WriteLine($"{x}, {y}"); // 10, 20
 ```
-- In
-Passes a variable by reference, but as read-only.<br>
+- in: in passes a variable by reference, but as read-only.<br>
 The method can read the value but cannot modify it.<br>
 Useful for performance when passing large structs (avoids copying).<br>
 ```csharp
