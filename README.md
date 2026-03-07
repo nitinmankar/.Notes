@@ -668,8 +668,7 @@ you can do multiple returns with yield.
 
 ## Basic concepts of Attributes and Reflection.
 
-- Attributes
-An attribute is metadata attached to code elements (class, method, property, etc.).
+- Attributes: An attribute is metadata attached to code elements (class, method, property, etc.).
 It provides declarative information that can be read at runtime.
 Example:
 ```csharp
@@ -708,17 +707,15 @@ Needs reflection (or framework) to read it<br>
 Stored in assembly metadata<br>
 Constructor runs only when attribute is accessed<br>
 
-Real ASP.NET Core Usage
- - [HttpGet] → Routing
- - [Authorize] → Authorization
- - [Required] → Validation
- - [ApiController] → Behavior configuration
-Framework reads them using reflection.
-- Reflection
-What is Reflection?<br>
-Reflection allows inspecting types, methods, properties, and attributes at runtime.<br>
+Real ASP.NET Core Usage<br>
+[HttpGet] → Routing<br>
+[Authorize] → Authorization<br>
+[Required] → Validation<br>
+[ApiController] → Behavior configuration<br>
+Framework reads them using reflection.<br>
+- Reflection: Reflection allows inspecting types, methods, properties, and attributes at runtime.<br>
 It enables dynamic behavior when type is not known at compile time.<br>
- Basic Example
+Basic Example
 ```csharp
 Type type = typeof(User);
 
